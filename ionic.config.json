@@ -1,0 +1,7 @@
+{
+  "name": "sme-pwa",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
