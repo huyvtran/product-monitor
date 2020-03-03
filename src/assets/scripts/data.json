@@ -1,0 +1,142 @@
+{
+    "Data": [
+        {
+            "ProductMonitorID": "d46b1b37-4b3b-4ee6-b046-4e6055148914",
+            "ProductCode": "SME",
+            "SubcriberNumber": 99823,
+            "SubcriberNumberCancel": 0,
+            "SubcriberNumberIntergated": 0,
+            "ItemChart": "SME",
+            "ItemChartValue": 44601
+        },
+        {
+            "ProductMonitorID": "e46b1b37-4b3b-4ee6-b046-4e6055148914",
+            "ProductCode": "SME",
+            "SubcriberNumber": 99823,
+            "SubcriberNumberCancel": 0,
+            "SubcriberNumberIntergated": 0,
+            "ItemChart": "SME2017",
+            "ItemChartValue": 33976
+        },
+        {
+            "ProductMonitorID": "f46b1b37-4b3b-4ee6-b046-4e6055148914",
+            "ProductCode": "SME",
+            "SubcriberNumber": 99823,
+            "SubcriberNumberCancel": 0,
+            "SubcriberNumberIntergated": 0,
+            "ItemChart": "SME2015",
+            "ItemChartValue": 15146
+        },
+        {
+            "ProductMonitorID": "546b1b37-4b3b-4ee6-b046-4e6055148914",
+            "ProductCode": "SME",
+            "SubcriberNumber": 99823,
+            "SubcriberNumberCancel": 0,
+            "SubcriberNumberIntergated": 0,
+            "ItemChart": "SME2012",
+            "ItemChartValue": 6003
+        },
+        {
+            "ProductMonitorID": "f4654b37-4b3b-4ee6-b046-4e6055148914",
+            "ProductCode": "SME",
+            "SubcriberNumber": 99823,
+            "SubcriberNumberCancel": 0,
+            "SubcriberNumberIntergated": 0,
+            "ItemChart": "SME2010",
+            "ItemChartValue": 97
+        },
+        {
+            "ProductMonitorID": "1e93876c-2a5d-427b-92dc-c10f0bf5cbed",
+            "ProductCode": "MEInvoice",
+            "SubcriberNumber": 55442,
+            "SubcriberNumberCancel": 337,
+            "SubcriberNumberIntergated": 48149,
+            "ItemChart": "Startbooks",
+            "ItemChartValue": 5
+        },
+        {
+            "ProductMonitorID": "2e93876c-2a5d-427b-92dc-c10f0bf5cbed",
+            "ProductCode": "MEInvoice",
+            "SubcriberNumber": 55442,
+            "SubcriberNumberCancel": 337,
+            "SubcriberNumberIntergated": 48149,
+            "ItemChart": "MShop",
+            "ItemChartValue": 6
+        },
+        {
+            "ProductMonitorID": "3e93876c-2a5d-427b-92dc-c10f0bf5cbed",
+            "ProductCode": "MEInvoice",
+            "SubcriberNumber": 55442,
+            "SubcriberNumberCancel": 337,
+            "SubcriberNumberIntergated": 48149,
+            "ItemChart": "CukCuk",
+            "ItemChartValue": 14
+        },
+        {
+            "ProductMonitorID": "8e93876c-2a5d-427b-92dc-c10f0bf5cbed",
+            "ProductCode": "MEInvoice",
+            "SubcriberNumber": 55442,
+            "SubcriberNumberCancel": 337,
+            "SubcriberNumberIntergated": 48149,
+            "ItemChart": "MIMOSA.NET",
+            "ItemChartValue": 53
+        },
+        {
+            "ProductMonitorID": "8e93876c-2a5d-427b-92dc-c10f0bf5cbed",
+            "ProductCode": "MEInvoice",
+            "SubcriberNumber": 55442,
+            "SubcriberNumberCancel": 337,
+            "SubcriberNumberIntergated": 48149,
+            "ItemChart": "QLTH.VN",
+            "ItemChartValue": 591
+        },
+        {
+            "ProductMonitorID": "8e93876c-2a5d-427b-92dc-c10f0bf5cbed",
+            "ProductCode": "MEInvoice",
+            "SubcriberNumber": 55442,
+            "SubcriberNumberCancel": 337,
+            "SubcriberNumberIntergated": 48149,
+            "ItemChart": "AMIS ACT",
+            "ItemChartValue": 1184
+        },
+        {
+            "ProductMonitorID": "8e93876c-2a5d-427b-92dc-c10f0bf5cbed",
+            "ProductCode": "MEInvoice",
+            "SubcriberNumber": 55442,
+            "SubcriberNumberCancel": 337,
+            "SubcriberNumberIntergated": 48149,
+            "ItemChart": "Meinvoice App",
+            "ItemChartValue": 4799
+        },
+        {
+            "ProductMonitorID": "8e93876c-2a5d-427b-92dc-c10f0bf5cbed",
+            "ProductCode": "MEInvoice",
+            "SubcriberNumber": 55442,
+            "SubcriberNumberCancel": 337,
+            "SubcriberNumberIntergated": 48149,
+            "ItemChart": "Meinvoice Desktop",
+            "ItemChartValue": 5739
+        },
+        {
+            "ProductMonitorID": "8e93876c-2a5d-427b-92dc-c10f0bf5cbed",
+            "ProductCode": "MEInvoice",
+            "SubcriberNumber": 55442,
+            "SubcriberNumberCancel": 337,
+            "SubcriberNumberIntergated": 48149,
+            "ItemChart": "Không tích hợp",
+            "ItemChartValue": 7293
+        },
+        {
+            "ProductMonitorID": "8e93876c-2a5d-427b-92dc-c10f0bf5cbed",
+            "ProductCode": "MEInvoice",
+            "SubcriberNumber": 55442,
+            "SubcriberNumberCancel": 337,
+            "SubcriberNumberIntergated": 48149,
+            "ItemChart": "SME.NET",
+            "ItemChartValue": 35700
+        }
+
+    ],
+    "Success": true,
+    "Message": null
+}

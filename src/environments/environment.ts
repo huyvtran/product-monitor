@@ -3,7 +3,16 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  clientID: '',
+  misaIdUrl: '',
+  callback: '',
+  secret: 'secret',
+  serviceURL: '',
+  serviceToken: '',
+  apiOrgInfoEndpoint: '',
+  apikeyOrgInfo: '',
+  extractIDCardAPI: '',
 };
 
 /*

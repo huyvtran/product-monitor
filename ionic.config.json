@@ -1,7 +1,8 @@
 {
   "name": "sme-pwa",
   "integrations": {
-    "capacitor": {}
+    "capacitor": {},
+    "cordova": {}
   },
   "type": "angular"
 }

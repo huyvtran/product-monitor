@@ -1,12 +1,15 @@
-import { Component } from '@angular/core';
-
+import { Component, OnInit, ViewChild, ElementRef } from "@angular/core";
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
-  styleUrls: ['home.page.scss'],
+  styleUrls: ['home.page.scss', 'custom.css'],
 })
-export class HomePage {
+export class HomePage { 
 
-  constructor() {}
+  constructor(private router: Router) {}
 
+  startApp() {
+    this.router.navigate(["sme"]);
+  }  
 }
