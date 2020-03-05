@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef } from "@angular/core";
-import { Router } from '@angular/router';
-import {Chart} from "chart.js";
+import { Chart } from "chart.js";
 import { MonitorService } from 'src/app/services/monitor.service';
 
 @Component({
@@ -11,25 +10,28 @@ import { MonitorService } from 'src/app/services/monitor.service';
 export class MEINVOICEPage implements OnInit {
   @ViewChild("barCanvas", {static: true}) barCanvas: ElementRef;
   private barChart: Chart;
-  url = "https://localhost:44324/api/productmonitor/meinvoice";
+  private url: string = "https://localhost:44324/api/productmonitor/meinvoice";
 
-  constructor(private router: Router, private monitorService: MonitorService) {}
+  constructor(private monitorService: MonitorService) {}
 
   ngOnInit() {
     const pointer = this;
     this.setTime();
-
     this.monitorService.sendGetData(this.url).subscribe(res => {
-      const data = res["Data"];
-      
-      const {labels, dataChart} = pointer.setDataChart(data);      
-      pointer.loadChart(labels, dataChart);
-
-      const dataStatistic = pointer.getDataStatistic(data);
-      pointer.bindDataStatistic(dataStatistic, pointer);
-
+      const data = res["Data"];      
+      pointer.loadChart(data);
+      pointer.bindDataStatistic(data, pointer);
       pointer.setNumberCustomer(data);
     });
+  }
+
+  /**
+   * hàm thực hiện chuyển trang
+   * created by HDNam 3/3/2020
+   */
+  navigate(uri) {
+    const origin = window.location.origin;
+    window.location.href = origin + uri;
   }
 
   /**
@@ -40,15 +42,6 @@ export class MEINVOICEPage implements OnInit {
   setNumberCustomer(data) {
     const numberCustomer = data[0]["SubcriberNumber"] + data[0]["SubcriberNumberCancel"];
     document.getElementById('subcriber-number').innerHTML = this.formatNumber(numberCustomer);
-  }
-
-  /**
-   * hàm thực hiện chuyển trang
-   * created by HDNam 3/3/2020
-   */
-  navigate(uri) {
-    const origin = window.location.origin;
-    window.location.href = origin + uri;
   }
 
   /**
@@ -66,16 +59,19 @@ export class MEINVOICEPage implements OnInit {
    */
   getCurrentTime() {
     const date = new Date();
-    const hour = date.getHours() % 12;
-    const min = date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes();
-    const second = date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds();
-    return `0${hour}:${min}:${second}`;
+    const h = date.getHours() % 12;
+    const m = date.getMinutes();
+    const s = date.getSeconds();
+    const hour = h < 10 ? '0' + h : h;
+    const min = m < 10 ? '0' + m : m;
+    const second = s < 10 ? '0' + s : s;
+    return `${hour}:${min}:${second}`;
   }
 
   /**
    * hàm thực hiện format number
-   * @param number 
    * created by HDNam 2/3/2020
+   * @param number 
    */
   formatNumber(number) {
     if (!isNaN(number)) {
@@ -109,7 +105,8 @@ export class MEINVOICEPage implements OnInit {
    * @param dataStatistic 
    * @param pointer 
    */
-  bindDataStatistic(dataStatistic, pointer) {
+  bindDataStatistic(data, pointer) {
+    const dataStatistic = this.getDataStatistic(data);
     const statistics = document.getElementById('statistics');
     dataStatistic.forEach(e => {
       const oneItem = `<ion-item>
@@ -126,7 +123,7 @@ export class MEINVOICEPage implements OnInit {
    * created by HDNam 3/3/2020
    * @param data 
    */
-  setDataChart(data) {
+  getDataChart(data) {
     const labels = [];
     const dataChart = [];
     data.forEach(item => {
@@ -140,42 +137,36 @@ export class MEINVOICEPage implements OnInit {
    * hàm thực hiện load chart (chartjs)
    * created by HDNam 2/3/2020
    */
-  loadChart(labels, data) {
+  loadChart(data) {
     const colorSet = ["#B26231", "#6C9421", "#F6C803", "#FF6600","#B31A49"];
+    const { labels, dataChart } = this.getDataChart(data);
     this.barChart = new Chart(this.barCanvas.nativeElement, {
       type: "horizontalBar",
       data: {
         labels: labels,
-        datasets: [
-          {
-            label: "",
-            data: data,
+        datasets: [{
+            data: dataChart,
             backgroundColor: colorSet,
             borderColor: colorSet,
             borderWidth: 1
-          }
-        ]
+        }]
       },
       options: {
-        legend: {
-          display: false
-        },
-        tooltips: {
-          enabled: false
-        },
+        legend: { display: false },
+        tooltips: { enabled: false },
         animation: {
           onComplete: function () {
-              var ctx = this.chart.ctx;
+              let ctx = this.chart.ctx;
               ctx.font = Chart.helpers.fontString(Chart.defaults.global.defaultFontFamily, 'normal', Chart.defaults.global.defaultFontFamily);
               ctx.fillStyle = "black";
               ctx.textAlign = 'center';
               ctx.textBaseline = 'bottom';
               this.data.datasets.forEach(function (dataset) {
-                  for (var i = 0; i < dataset.data.length; i++) {
-                      for(var key in dataset._meta)
+                  for (let i = 0; i < dataset.data.length; i++) {
+                      for(let key in dataset._meta)
                       {
-                          var model = dataset._meta[key].data[i]._model;
-                          ctx.fillText(dataset.data[i], model.x + 17, model.y + 7);
+                        let model = dataset._meta[key].data[i]._model;
+                        ctx.fillText(dataset.data[i], model.x + 17, model.y + 7);
                       }
                   }
               });

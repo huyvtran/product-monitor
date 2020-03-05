@@ -1,7 +1,7 @@
 import { Component, OnInit} from "@angular/core";
-import { Router } from '@angular/router';
 import { MonitorService } from '../../services/monitor.service';
-import * as CanvasJS from '../../../assets/scripts/canvasjs.min';
+import * as am4core from "@amcharts/amcharts4/core";
+import * as am4charts from "@amcharts/amcharts4/charts";
 
 @Component({
   selector: 'app-sme',
@@ -10,26 +10,63 @@ import * as CanvasJS from '../../../assets/scripts/canvasjs.min';
 })
 
 export class SMEPage implements OnInit {
-  url = "https://localhost:44324/api/productmonitor/sme";
-  public legends = [];
-  constructor(private router: Router, private monitorService: MonitorService) { }
+  private url: string = "https://localhost:44324/api/productmonitor/sme";
 
-  /**
-   * hàm sẽ chạy ngay khi page được load
-   * created by HDNam
-   */
+  constructor(private monitorService: MonitorService) { }
+
   ngOnInit() {
-    this.setColorChart();
-    this.setTime();
     const pointer = this;
+
+    this.setTime();
     this.monitorService.sendGetData(this.url).subscribe(res => {
       const data = res["Data"];
-      const dataPoints = pointer.setDataPoints(data);
-      pointer.loadChart(dataPoints);
+      pointer.loadChartSME(data);
       pointer.setSubsciberNumber(data);
       pointer.setLegend(data, pointer);
       pointer.setStatusPurchase(data, pointer);
     });
+  }
+
+  /**
+   * hàm thực hiện tạo dữ liệu cho biểu đồ (amchartjs)
+   * created by HDNam 5/3/2020
+   * @param data 
+   */
+  getDataChart(data) {
+    const dataChart = [];
+    data.forEach(e => {
+      dataChart.push({
+        product: e.ItemChart,
+        value: Math.floor(e.ItemChartValue / e.SubcriberNumber * 100)
+      });
+    });
+    return dataChart;
+  }
+
+  /**
+   * hàm thực hiện load biểu đồ
+   * created by HDNam 5/3/2020
+   * @param data
+   */
+  loadChartSME(data) {
+    const dataChart = this.getDataChart(data);
+    let chart = am4core.create("chartContainer", am4charts.PieChart);
+    chart.data = dataChart;
+    chart.innerRadius = am4core.percent(15);
+    chart.radius = am4core.percent(55);
+
+    let pieSeries = chart.series.push(new am4charts.PieSeries());
+    pieSeries.dataFields.value = "value";
+    pieSeries.dataFields.category = "product";
+    pieSeries.labels.template.text = "{value.value}%";
+    pieSeries.colors.list = [
+      am4core.color("#55D7FF"),
+      am4core.color("#FE8373"),
+      am4core.color("#2DD36F"),
+      am4core.color("#A49EF4"),
+      am4core.color("#FEB300"),
+    ];
+    console.log(chart)
   }
 
   /**
@@ -83,10 +120,13 @@ export class SMEPage implements OnInit {
    */
   getCurrentTime() {
     const date = new Date();
-    const hour = date.getHours() % 12;
-    const min = date.getMinutes();
-    const second = date.getSeconds();
-    return `0${hour}:${min}:${second}`;
+    const h = date.getHours() % 12;
+    const m = date.getMinutes();
+    const s = date.getSeconds();
+    const hour = h < 10 ? '0' + h : h;
+    const min = m < 10 ? '0' + m : m;
+    const second = s < 10 ? '0' + s : s;
+    return `${hour}:${min}:${second}`;
   }
 
   /**
@@ -120,72 +160,12 @@ export class SMEPage implements OnInit {
 
   /**
    * hàm thực hiện format number
-   * @param number 
    * created by HDNam 2/3/2020
+   * @param number 
    */
   formatNumber(number) {
     if (!isNaN(number)) {
       return number.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1.");
     }
-  }
-
-  /**
-   * hàm thực hiện thiết lập giá trị datapoints cho biểu đồ chính
-   * @param dataSME 
-   * created by HDNam 28/2/2020
-   */
-  setDataPoints(dataSME) {
-    const dataPoints = [];
-    dataSME.forEach(e => {
-      dataPoints.push({
-        y: e.ItemChartValue,
-        label: e.ItemChart,
-        percent: (e.ItemChartValue / e.SubcriberNumber * 100).toFixed(1)
-      })
-    });
-    return dataPoints;
-  }
-
-  /**
-   * hàm thực hiện set color array
-   * created by HDNam 2/3/2020
-   */
-  setColorChart() {
-    CanvasJS.addColorSet("colorSet",["#55D7FF", "#FE8373", "#2dd36f", "#A49EF4", "#FEB300"]);
-  }
-
-  /**
-   * hàm thực hiện load biểu đồ chính
-   * @param dataSME 
-   * created by HDNam 28/2/2020
-   */
-  loadChart(dataPoints){
-    const chart = new CanvasJS.Chart("chartContainer", {
-      theme: "light2",
-      exportEnabled: false,
-      animationEnabled: true,
-      title: { enabled: false },
-      toolTip:{ enabled: false },
-      legend: {
-        verticalAlign: 'center',
-        horizontalAlign: 'right',
-        maxHeight: 900,
-        fontWeight: 'bold',
-        fontSize: 12  
-      },
-      colorSet: "colorSet",
-      data: [{
-        type: "pie",
-        startAngle: -90,
-        showInLegend: false,
-        legendText: "{label} {y}",
-        indexLabelFontSize: 12,
-        indexLabel: "{percent}%",
-        dataPoints: dataPoints,
-        indexLabelLineColor: "black",
-        indexlabelLineThickness: 4,
-      }]
-    });
-    chart.render();
   }
 }
