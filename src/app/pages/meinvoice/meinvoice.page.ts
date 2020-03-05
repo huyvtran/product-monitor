@@ -9,16 +9,16 @@ import { MonitorService } from 'src/app/services/monitor.service';
   styleUrls: ['./meinvoice.page.scss'],
 })
 export class MEINVOICEPage implements OnInit {
-  @ViewChild("barCanvas") barCanvas: ElementRef;
+  @ViewChild("barCanvas", {static: true}) barCanvas: ElementRef;
   private barChart: Chart;
   url = "https://localhost:44324/api/productmonitor/meinvoice";
 
   constructor(private router: Router, private monitorService: MonitorService) {}
 
   ngOnInit() {
+    const pointer = this;
     this.setTime();
 
-    const pointer = this;
     this.monitorService.sendGetData(this.url).subscribe(res => {
       const data = res["Data"];
       
@@ -28,11 +28,18 @@ export class MEINVOICEPage implements OnInit {
       const dataStatistic = pointer.getDataStatistic(data);
       pointer.bindDataStatistic(dataStatistic, pointer);
 
-      const numberCustomer = data[0]["SubcriberNumber"] + data[0]["SubcriberNumberCancel"];
-      document.getElementById('subcriber-number').innerHTML = pointer.formatNumber(numberCustomer);
-
-      
+      pointer.setNumberCustomer(data);
     });
+  }
+
+  /**
+   * hàm thực hiện đặt giá trị số khách hàng đăng kí
+   * created by HDNam 5/3/2020
+   * @param data 
+   */
+  setNumberCustomer(data) {
+    const numberCustomer = data[0]["SubcriberNumber"] + data[0]["SubcriberNumberCancel"];
+    document.getElementById('subcriber-number').innerHTML = this.formatNumber(numberCustomer);
   }
 
   /**
@@ -60,8 +67,8 @@ export class MEINVOICEPage implements OnInit {
   getCurrentTime() {
     const date = new Date();
     const hour = date.getHours() % 12;
-    const min = date.getMinutes();
-    const second = date.getSeconds();
+    const min = date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes();
+    const second = date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds();
     return `0${hour}:${min}:${second}`;
   }
 

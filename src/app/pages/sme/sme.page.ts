@@ -26,7 +26,7 @@ export class SMEPage implements OnInit {
       const data = res["Data"];
       const dataPoints = pointer.setDataPoints(data);
       pointer.loadChart(dataPoints);
-      pointer.setSubsciberNumber(data, pointer);
+      pointer.setSubsciberNumber(data);
       pointer.setLegend(data, pointer);
       pointer.setStatusPurchase(data, pointer);
     });
@@ -95,8 +95,8 @@ export class SMEPage implements OnInit {
    * @param data 
    * @param pointer 
    */
-  setSubsciberNumber(data, pointer) {
-    const subcriberNumber = pointer.formatNumber(data[0]["SubcriberNumber"]);
+  setSubsciberNumber(data) {
+    const subcriberNumber = this.formatNumber(data[0]["SubcriberNumber"]);
     document.getElementById('subcriber-number').innerHTML = subcriberNumber;
   }
 
