@@ -73,100 +73,136 @@
       <ion-toolbar>
         <ion-buttons slot="start">
           <ion-menu-button></ion-menu-button>
+          <!-- <ion-icon name="menu-outline"></ionk-icon> -->
         </ion-buttons>
         <ion-grid>
           <ion-row class="h-22">
             <ion-col>
-              <ion-title class="text-center font-size-20 text-bold">SME</ion-title>
+              <ion-title class="text-center font-size-20 text-bold">QLTS</ion-title>
             </ion-col>
           </ion-row>
           
           <ion-row class="h-22">
             <ion-col>
-              <ion-title class="text-center text-small" color="medium">Thời gian cập nhật <span id="timestamp-update">08:57:41</span></ion-title>
+              <ion-title class="text-center text-small" color="medium">Thời gian cập nhật <span id="timestamp-update">12:30:00</span></ion-title>
             </ion-col>
           </ion-row>
         </ion-grid>
       </ion-toolbar>
     </ion-header>
 
-    <!-- MAIN -->
     <ion-content padding>
-      <!-- custom license -->
+      <!-- Thuê bao đã cấp lũy kế -->
       <ion-card class="border-bottom">
         <ion-card-content>
           <ion-card-title>
             <ion-item>
-              <ion-text class="title">Khách hàng cấp GPSD</ion-text>
-              <ion-text slot="end" color="success" class="text-end font-size-20 text-bold" id="subcriber-number"></ion-text>
+              <ion-text class="title">Thuê bao đã cấp lũy kế</ion-text>
+              <ion-text slot="end" color="success" class="text-end font-size-20 text-bold" id="subcriber-number">52.897</ion-text>
             </ion-item>
           </ion-card-title>
-          <ion-grid>
-            <ion-row>
-              <ion-col size="6">
-                <!-- <canvas #pieChart></canvas> -->
-                <!-- <div id="chartContainer" style="height: 200px; width: 100%;"></div> -->
-                <div id="chartContainer" style="height: 100%"></div>
-              </ion-col>
-              <ion-col size="6">
-                <ion-list id="chart-legend"></ion-list>
-              </ion-col>
-            </ion-row>
-          </ion-grid>
+          <ion-list id="statistics">
+            <ion-item lines="none">
+                <ion-icon name="people-outline"></ion-icon>
+                <ion-text class="pl-8">Thuê bao còn hoạt động</ion-text>
+                <ion-text slot="end" class="number">47.003</ion-text>
+            </ion-item>
+            <ion-item lines="none">
+              <ion-text class="text-gray">
+                <span><img src="./../../../assets/images/dot-green.png" alt=""></span> Còn hạn
+              </ion-text>
+              <ion-text slot="end" class="text-gray">
+                <img src="./../../../assets/images/dot-orange.png" alt=""> Quá hạn
+              </ion-text>
+            </ion-item>
+            <ion-item lines="none">
+              <ion-progress-bar color="success" value="0.755"></ion-progress-bar>
+            </ion-item>
+            <ion-item>
+              <ion-text><span class="number-small">35.470</span><span class="percent text-gray">(75,5%)</span></ion-text>
+              <ion-text slot="end"><span class="number-small">11.533</span><span class="percent text-gray">(24,5%)</span></ion-text>
+            </ion-item>
+
+            <!--  -->
+            <ion-item lines="none">
+              <ion-icon name="person-outline"></ion-icon>
+              <ion-text class="pl-8">Thuê bao dùng thử chưa cắt</ion-text>
+              <ion-text slot="end" class="number">2.115</ion-text>
+            </ion-item>
+            <ion-item lines="none">
+              <ion-text class="text-gray">
+                <span><img src="./../../../assets/images/dot-green.png" alt=""></span> Còn hạn
+              </ion-text>
+              <ion-text slot="end" class="text-gray">
+                <img src="./../../../assets/images/dot-orange.png" alt=""> Quá hạn
+              </ion-text>
+            </ion-item>
+            <ion-item lines="none">
+              <ion-progress-bar color="success" value="0.095"></ion-progress-bar>
+            </ion-item>
+            <ion-item>
+              <ion-text><span class="number-small">100</span><span class="percent text-gray">(4,7%)</span></ion-text>
+              <ion-text slot="end"><span class="number-small">2.015</span><span class="percent text-gray">(95,5%)</span></ion-text>
+            </ion-item>
+
+            <!--  -->
+            <ion-item lines="none">
+              <ion-icon name="person-outline"></ion-icon>
+              <ion-text class="pl-8">Thuê bao đã cắt</ion-text>
+              <ion-text slot="end" class="number">3.779</ion-text>
+            </ion-item>
+          </ion-list>
         </ion-card-content>
       </ion-card>
 
-      <!-- status use -->
+      <!-- Tình hình sử dụng -->
       <ion-card class="border-bottom">
         <ion-card-content>
           <ion-card-title class="title pl-20 my-8">Tình hình sử dụng</ion-card-title>
           <ion-grid>
             <ion-row class="mb-16">
               <ion-col size-xs=6>
-                <ion-button color="success" fill="solid" shape="round" expand="block" class="m-8">SME Desktop</ion-button>
+                <ion-button color="success" fill="solid" shape="round" expand="block" class="m-8">Số đơn vị</ion-button>
               </ion-col>
               <ion-col size-xs=6>
-                <ion-button color="medium" fill="outline" shape="round" expand="block" class="m-8">SME Mobile</ion-button>
+                <ion-button color="medium" fill="outline" shape="round" expand="block" class="m-8">Số người dùng</ion-button>
               </ion-col>
             </ion-row>
             <ion-row class="my-8">
               <ion-col size-xs=4>
                 <ion-card color="tertiary" class="m-8">
                   <ion-card-content class="p-8">
-                    <ion-card-subtitle class="text-center">1 tháng</ion-card-subtitle>
-                    <ion-card-title class="text-center">64.698</ion-card-title>
+                    <ion-card-subtitle class="text-center">Ngày</ion-card-subtitle>
+                    <ion-card-title class="text-center">1.327</ion-card-title>
                   </ion-card-content>
                 </ion-card>
               </ion-col>
               <ion-col size-xs=4>
                 <ion-card color="secondary" class="m-8">
                   <ion-card-content class="p-8">
-                    <ion-card-subtitle class="text-center">3 tháng</ion-card-subtitle>
-                    <ion-card-title class="text-center">71.815</ion-card-title>
+                    <ion-card-subtitle class="text-center">Tháng</ion-card-subtitle>
+                    <ion-card-title class="text-center">25.147</ion-card-title>
                   </ion-card-content>
                 </ion-card>
               </ion-col>
               <ion-col size-xs=4>
                 <ion-card color="warning" class="m-8">
                   <ion-card-content class="color-white p-8">
-                    <ion-card-subtitle class="text-center">6 tháng</ion-card-subtitle>
-                    <ion-card-title class="text-center">76.093</ion-card-title>
+                    <ion-card-subtitle class="text-center">3 Tháng</ion-card-subtitle>
+                    <ion-card-title class="text-center">28.511</ion-card-title>
                   </ion-card-content>
                 </ion-card>
               </ion-col>
             </ion-row>
           </ion-grid>
-        </ion-card-content>
-      </ion-card>
-
-      <!-- status purchase -->
-      <ion-card class="border-bottom">
-        <ion-card-content id="status-purchase">
-          <ion-card-title class="title pl-20 my-8">Tình hình gia hạn</ion-card-title>
+          <ion-item>
+            <ion-icon name="document-text-outline"></ion-icon>
+            <ion-text class="pl-8">Số tài sản phát sinh</ion-text>
+            <ion-text slot="end" class="number">4.371.279</ion-text>
+          </ion-item>
         </ion-card-content>
       </ion-card>
     </ion-content>
   </div>
-
 </ion-app>
 

@@ -1,3 +1,30 @@
+ion-progress-bar {
+  height: 6px;
+  border-radius: 2px;
+}
+
+.text-gray {
+  color: #969696;
+}
+
+.card-content-md {
+  padding-left: 0;
+  padding-right: 0;
+  padding-top: 13px;
+  padding-bottom: 13px;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.card-content-md {
+  /* padding-left: unset; */
+  /* padding-right: unset; */
+  -webkit-padding-start: 0;
+  padding-inline-start: 0;
+  -webkit-padding-end: 0;
+  padding-inline-end: 0;
+}
+
 /* IP5 320 x 568 */
 ion-card-title.text-center.ion-inherit-color.ios.hydrated {
     font-size: 20px;
@@ -17,7 +44,13 @@ ion-card-subtitle.text-center.ion-inherit-color.ios.hydrated {
   }
   
   .number {
-    font-size: 16px;
+    font-size: 20px;
+    font-weight: 800;
+    color: #000000;
+  }
+
+  .number-small {
+    font-size: 14px;
     font-weight: 800;
     color: #000000;
   }

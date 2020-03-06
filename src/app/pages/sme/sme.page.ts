@@ -6,7 +6,7 @@ import * as am4charts from "@amcharts/amcharts4/charts";
 @Component({
   selector: 'app-sme',
   templateUrl: './sme.page.html',
-  styleUrls: ['./custom.css'],
+  styleUrls: [],
 })
 
 export class SMEPage implements OnInit {
@@ -66,7 +66,6 @@ export class SMEPage implements OnInit {
       am4core.color("#A49EF4"),
       am4core.color("#FEB300"),
     ];
-    console.log(chart)
   }
 
   /**

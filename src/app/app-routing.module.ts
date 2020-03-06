@@ -16,6 +16,22 @@ const routes: Routes = [
     path: 'enviroment',
     loadChildren: () => import('./enviroment/enviroment/enviroment.module').then( m => m.EnviromentPageModule)
   },
+  {
+    path: 'qlcb',
+    loadChildren: () => import('./pages/qlcb/qlcb.module').then( m => m.QlcbPageModule)
+  },
+  {
+    path: 'qlts',
+    loadChildren: () => import('./pages/qlts/qlts.module').then( m => m.QltsPageModule)
+  },
+  {
+    path: 'mshopkeeper',
+    loadChildren: () => import('./pages/mshopkeeper/mshopkeeper.module').then( m => m.MshopkeeperPageModule)
+  },
+  {
+    path: 'bamboo',
+    loadChildren: () => import('./pages/bamboo/bamboo.module').then( m => m.BambooPageModule)
+  },
 ];
 
 @NgModule({

@@ -5,7 +5,7 @@ import { MonitorService } from 'src/app/services/monitor.service';
 @Component({
   selector: 'app-meinvoice',
   templateUrl: './meinvoice.page.html',
-  styleUrls: ['./meinvoice.page.scss'],
+  styleUrls: [],
 })
 export class MEINVOICEPage implements OnInit {
   @ViewChild("barCanvas", {static: true}) barCanvas: ElementRef;
