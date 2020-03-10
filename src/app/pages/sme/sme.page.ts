@@ -13,10 +13,9 @@ export class SMEPage implements OnInit {
   private url: string = "https://localhost:44324/api/productmonitor/sme";
 
   constructor(private monitorService: MonitorService) { }
-
+  
   ngOnInit() {
     const pointer = this;
-
     this.setTime();
     this.monitorService.sendGetData(this.url).subscribe(res => {
       const data = res["Data"];
@@ -24,6 +23,45 @@ export class SMEPage implements OnInit {
       pointer.setSubsciberNumber(data);
       pointer.setLegend(data, pointer);
       pointer.setStatusPurchase(data, pointer);
+      pointer.loadStatisticPurchase(data, pointer);
+    });
+  }
+
+  /**
+   * hàm thực hiện khi click vào button kiểu thiêt bị
+   * created by HDNam 10/3/2020
+   * @param typeDevice 
+   */
+  loadStatistic(typeDevice) {
+    const pointer = this;
+    this.monitorService.sendGetData(this.url).subscribe(res => {
+      const data = res["Data"];
+      pointer.loadStatisticPurchase(data, pointer, typeDevice);
+    });
+  }
+
+  /**
+   * hàm thục hiện load thống kế tình hình sử dụng
+   * created by HDNam 10/3/2020
+   * @param data 
+   * @param pointer 
+   * @param typeDevice 
+   */
+  loadStatisticPurchase(data, pointer, typeDevice = 'desktop'){
+    const dataDesktop = data.filter(e => e.Device === typeDevice);
+    const statisticPurchase = document.getElementById('statistic-purchase');
+    const color = ["tertiary", "secondary", "warning"];
+    statisticPurchase.innerHTML = '';
+    dataDesktop.forEach((e, i) => {
+      const oneCol = `<ion-col size=4>
+        <ion-card color="${color[i]}" class="m-8">
+          <ion-card-content class="p-8">
+            <ion-card-subtitle class="text-center">${e.ExpiryTime} tháng</ion-card-subtitle>
+            <ion-card-title class="text-center">${pointer.formatNumber(e.ItemChartValue)}</ion-card-title>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>`;
+      statisticPurchase.insertAdjacentHTML('beforeend', oneCol);
     });
   }
 
@@ -78,7 +116,7 @@ export class SMEPage implements OnInit {
     const total = data[0]["SubcriberNumber"];
     const aboutToExpire = data[0]["AboutToExpire"];
     const repurchase = data[0]["Repurchase"];
-    const statusPurchase = document.getElementById('status-purchase');
+    const statisticPurchase = document.getElementById('status-purchase');
     const dataPurchase = [
       {label: "Đã gia hạn", value: aboutToExpire, color: "secondary", percent: aboutToExpire / total},
       {label: "Sắp hết hạn", value: repurchase, color: "warning", percent: repurchase / total}
@@ -91,7 +129,7 @@ export class SMEPage implements OnInit {
         </ion-item>
         <ion-progress-bar color="${e.color}" value="${e.percent}"></ion-progress-bar>
       </div>`;
-      statusPurchase.insertAdjacentHTML('beforeend', oneDiv);
+      statisticPurchase.insertAdjacentHTML('beforeend', oneDiv);
     });
   }
 

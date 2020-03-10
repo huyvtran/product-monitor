@@ -83,7 +83,9 @@
           
           <ion-row class="h-22">
             <ion-col>
-              <ion-title class="text-center text-small" color="medium">Thời gian cập nhật <span id="timestamp-update">08:57:41</span></ion-title>
+              <ion-title class="text-center text-small" color="medium">
+                Thời gian cập nhật <span id="timestamp-update">08:57:41</span>
+              </ion-title>
             </ion-col>
           </ion-row>
         </ion-grid>
@@ -123,38 +125,15 @@
           <ion-grid>
             <ion-row class="mb-16">
               <ion-col size-xs=6>
-                <ion-button color="success" fill="solid" shape="round" expand="block" class="m-8">SME Desktop</ion-button>
+                <ion-button color="success" fill="solid" shape="round" expand="block" 
+                class="m-8" (click)="loadStatistic('desktop')">SME Desktop</ion-button>
               </ion-col>
               <ion-col size-xs=6>
-                <ion-button color="medium" fill="outline" shape="round" expand="block" class="m-8">SME Mobile</ion-button>
+                <ion-button color="medium" fill="outline" shape="round" expand="block" 
+                class="m-8" (click)="loadStatistic('mobile')">SME Mobile</ion-button>
               </ion-col>
             </ion-row>
-            <ion-row class="my-8">
-              <ion-col size-xs=4>
-                <ion-card color="tertiary" class="m-8">
-                  <ion-card-content class="p-8">
-                    <ion-card-subtitle class="text-center">1 tháng</ion-card-subtitle>
-                    <ion-card-title class="text-center">64.698</ion-card-title>
-                  </ion-card-content>
-                </ion-card>
-              </ion-col>
-              <ion-col size-xs=4>
-                <ion-card color="secondary" class="m-8">
-                  <ion-card-content class="p-8">
-                    <ion-card-subtitle class="text-center">3 tháng</ion-card-subtitle>
-                    <ion-card-title class="text-center">71.815</ion-card-title>
-                  </ion-card-content>
-                </ion-card>
-              </ion-col>
-              <ion-col size-xs=4>
-                <ion-card color="warning" class="m-8">
-                  <ion-card-content class="color-white p-8">
-                    <ion-card-subtitle class="text-center">6 tháng</ion-card-subtitle>
-                    <ion-card-title class="text-center">76.093</ion-card-title>
-                  </ion-card-content>
-                </ion-card>
-              </ion-col>
-            </ion-row>
+            <ion-row class="my-8" id="statistic-purchase"></ion-row>
           </ion-grid>
         </ion-card-content>
       </ion-card>
@@ -167,6 +146,4 @@
       </ion-card>
     </ion-content>
   </div>
-
 </ion-app>
-
